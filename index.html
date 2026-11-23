@@ -3,10 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lammensyli</title>
+
+    <meta
+        name="description"
+        content="Lammensyli – tunnelmallinen lomamökki Rukalla jopa 10 henkilölle."
+    >
+
+    <title>Lammensyli | Mökki Rukalla</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>Lammensyli</h1>
-    <p>Tervetuloa Lammensylin sivuille!</p>
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <a href="#top" class="logo">
+            Lammensyli
+            <span>Ruka</span>
+        </a>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Avaa valikko"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+        <nav id="mainNav">
+            <a href="#mokki">Mökki</a>
+            <a href="#kuvat">Kuvat</a>
+            <a href="#varustelu">Varustelu</a>
+            <a href="#sijainti">Sijainti</a>
+
+            <a
+                class="nav-book"
+                href="https://www.booking.com/Pulse-TPpUxo"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Varaa
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main id="top">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <img
+            src="images/hero.jpg"
+            alt="Lammensyli Rukalla"
+            class="hero-image"
+        >
+
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
+            <p class="hero-eyebrow">
+                LOMAMÖKKI RUKALLA
+            </p>
+
+            <h1>Lammensyli</h1>
+
+            <p class="hero-text">
+                Oma rauha, tunturimaisemat ja Rukan palvelut lähellä.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    class="button button-primary"
+                    href="https://www.booking.com/Pulse-TPpUxo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Tarkista saatavuus
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="#mokki"
+                >
+                    Tutustu mökkiin
+                </a>
+
+            </div>
+
+        </div>
+
+        <a href="#mokki" class="scroll-down" aria-label="Siirry sisältöön">
+            ↓
+        </a>
+
+    </section>
+
+
+    <!-- QUICK FACTS -->
+
+    <section class="facts">
+
+        <div class="container facts-grid">
+
+            <div class="fact">
+                <strong>10</strong>
+                <span>henkilölle</span>
+            </div>
+
+            <div class="fact">
+                <strong>2 + parvi</strong>
+                <span>makuutilat</span>
+            </div>
+
+            <div class="fact">
+                <strong>Ruka</strong>
+                <span>Kuusamo</span>
+            </div>
+
+            <div class="fact">
+                <strong>Lemmikit</strong>
+                <span>sallittu</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CABIN -->
+
+    <section class="section" id="mokki">
+
+        <div class="container split">
+
+            <div class="section-text">
+
+                <p class="section-label">
+                    LAMMENSYLI
+                </p>
+
+                <h2>
+                    Tilaa yhteisille<br>
+                    lomapäiville
+                </h2>
+
+                <p class="lead">
+                    Lammensyli tarjoaa viihtyisän tukikohdan Rukan lomalle
+                    perheen, ystävien tai isommankin seurueen kanssa.
+                </p>
+
+                <p>
+                    Mökillä majoittuu jopa 10 henkilöä. Kaksi makuuhuonetta
+                    ja parvi tarjoavat hyvin tilaa niin yhteiseen
+                    oleskeluun kuin rauhallisiin yöuniin.
+                </p>
+
+                <p>
+                    Myös lemmikit ovat tervetulleita mukaan lomalle.
+                    Rukan aktiviteetit ja palvelut ovat helposti
+                    saavutettavissa ja skibussi kulkee läheltä.
+                </p>
+
+                <a href="#varustelu" class="text-link">
+                    Tutustu varusteluun →
+                </a>
+
+            </div>
+
+            <div class="feature-image">
+
+                <img
+                    src="images/cabin-1.jpg"
+                    alt="Lammensylin oleskelutila"
+                    loading="lazy"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMAGE BREAK -->
+
+    <section class="image-break">
+
+        <img
+            src="images/cabin-2.jpg"
+            alt="Talvinen tunnelma Lammensylissä"
+            loading="lazy"
+        >
+
+        <div class="image-break-overlay">
+
+            <div>
+                <p>RUKA</p>
+
+                <h2>
+                    Aamusta tunturiin.<br>
+                    Illaksi omaan rauhaan.
+                </h2>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALLERY -->
+
+    <section class="section gallery-section" id="kuvat">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">
+                        KUVAT
+                    </p>
+
+                    <h2>Tutustu Lammensyliin</h2>
+                </div>
+
+                <p>
+                    Tunnelmallinen tukikohta Rukan lomalle ympäri vuoden.
+                </p>
+
+            </div>
+
+
+            <div class="gallery">
+
+                <button class="gallery-item large" data-image="images/cabin-3.jpg">
+                    <img
+                        src="images/cabin-3.jpg"
+                        alt="Lammensyli"
+                        loading="lazy"
+                    >
+                </button>
+
+                <button class="gallery-item" data-image="images/cabin-4.jpg">
+                    <img
+                        src="images/cabin-4.jpg"
+                        alt="Lammensylin makuuhuone"
+                        loading="lazy"
+                    >
+                </button>
+
+                <button class="gallery-item" data-image="images/cabin-5.jpg">
+                    <img
+                        src="images/cabin-5.jpg"
+                        alt="Lammensylin sisätiloja"
+                        loading="lazy"
+                    >
+                </button>
+
+                <button class="gallery-item wide" data-image="images/cabin-6.jpg">
+                    <img
+                        src="images/cabin-6.jpg"
+                        alt="Lammensyli Rukalla"
+                        loading="lazy"
+                    >
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AMENITIES -->
+
+    <section class="section amenities-section" id="varustelu">
+
+        <div class="container">
+
+            <p class="section-label center">
+                MÖKKI
+            </p>
+
+            <h2 class="center">
+                Kaikki mitä onnistuneeseen<br>
+                Rukan lomaan tarvitset
+            </h2>
+
+
+            <div class="amenities">
+
+                <div class="amenity">
+
+                    <span class="amenity-icon">♙</span>
+
+                    <h3>Jopa 10 henkilöä</h3>
+
+                    <p>
+                        Tilaa perheelle, kahdelle perheelle
+                        tai ystäväporukalle.
+                    </p>
+
+                </div>
+
+
+                <div class="amenity">
+
+                    <span class="amenity-icon">⌂</span>
+
+                    <h3>2 makuuhuonetta + parvi</h3>
+
+                    <p>
+                        Makuutilat on jaettu kahteen
+                        makuuhuoneeseen ja parvelle.
+                    </p>
+
+                </div>
+
+
+                <div class="amenity">
+
+                    <span class="amenity-icon">♨</span>
+
+                    <h3>Oma sauna</h3>
+
+                    <p>
+                        Rentoudu saunassa tunturipäivän jälkeen.
+                    </p>
+
+                </div>
+
+
+                <div class="amenity">
+
+                    <span class="amenity-icon">◆</span>
+
+                    <h3>Lemmikit tervetulleita</h3>
+
+                    <p>
+                        Myös perheen nelijalkaiset voivat
+                        lähteä mukaan lomalle.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOCATION -->
+
+    <section class="location" id="sijainti">
+
+        <div class="container location-grid">
+
+            <div>
+
+                <p class="section-label light">
+                    SIJAINTI
+                </p>
+
+                <h2>
+                    Rukan palvelut<br>
+                    helposti saavutettavissa
+                </h2>
+
+                <p>
+                    Lammensyli sijaitsee Rukalla luonnon ja
+                    tunturin aktiviteettien läheisyydessä.
+                </p>
+
+                <div class="location-item">
+
+                    <strong>Skibussi</strong>
+
+                    <span>
+                        Pysäkki sijaitsee lähellä mökkiä
+                    </span>
+
+                </div>
+
+                <div class="location-item">
+
+                    <strong>Rukan hiihtokeskus</strong>
+
+                    <span>
+                        Rinteet, ladut ja palvelut helposti saavutettavissa
+                    </span>
+
+                </div>
+
+                <div class="location-item">
+
+                    <strong>Kuusamo</strong>
+
+                    <span>
+                        Rukan monipuoliset luonto- ja liikuntamahdollisuudet
+                        ympäri vuoden
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="map-placeholder">
+
+                <span>RUKA</span>
+
+                <h3>Lammensyli</h3>
+
+                <p>Kuusamo, Suomi</p>
+
+                <!--
+                Replace this later with a Google Maps or
+                OpenStreetMap embed.
+                -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOOKING -->
+
+    <section class="booking">
+
+        <div class="container booking-content">
+
+            <p class="section-label">
+                TERVETULOA RUKALLE
+            </p>
+
+            <h2>
+                Seuraava Rukan lomasi<br>
+                alkaa Lammensylistä.
+            </h2>
+
+            <p>
+                Tarkista vapaat ajankohdat ja hinnat Booking.comista.
+            </p>
+
+            <a
+                href="https://www.booking.com/Pulse-TPpUxo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button-dark"
+            >
+                Tarkista saatavuus
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <strong>Lammensyli</strong>
+            <span>Ruka · Kuusamo</span>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#mokki">Mökki</a>
+            <a href="#kuvat">Kuvat</a>
+            <a href="#sijainti">Sijainti</a>
+
+            <a
+                href="https://www.booking.com/Pulse-TPpUxo"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Booking.com
+            </a>
+
+        </div>
+
+        <div class="copyright">
+            © <span id="year"></span> Lammensyli
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- IMAGE MODAL -->
+
+<div
+    class="modal"
+    id="imageModal"
+    aria-hidden="true"
+>
+
+    <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="Sulje kuva"
+    >
+        ×
+    </button>
+
+    <img
+        id="modalImage"
+        src=""
+        alt="Lammensyli"
+    >
+
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
