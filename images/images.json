@@ -1,17 +1,12 @@
 {
   "images": [
     "images/bedroom.jpg",
-    "images/bedroom_2.jpg",
     "images/cabin-3.jpg",
     "images/cabin-4.jpg",
     "images/hero.jpg",
     "images/lake-view.jpg",
-    "images/lake-view_2.jpg",
     "images/living-room.jpg",
-    "images/living-room_2.jpg",
     "images/sauna.jpg",
-    "images/sauna_2.jpg",
-    "images/winter-trail.jpg",
-    "images/winter-trail_2.jpg"
+    "images/winter-trail.jpg"
   ]
 }
