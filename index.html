@@ -99,7 +99,7 @@
       <div class="container">
         <div class="section-heading reveal">
           <div><p class="section-kicker" data-i18n="stayKicker">MAJOITUS</p><h2 data-i18n="stayTitle">Joustavat nukkumapaikat jopa 10 vieraalle</h2></div>
-          <p data-i18n="stayIntro">Kaksi erillistä makuuhuonetta, tilava parvi ja olohuoneen vuodesohva sopivat perheille ja ystäväporukoille.</p>
+          <div class="section-heading-copy"><p data-i18n="stayIntro">Kaksi erillistä makuuhuonetta, tilava parvi ja olohuoneen vuodesohva sopivat perheille ja ystäväporukoille.</p><p class="integrated-tagline" data-i18n="lakeTitle">Aamulla tunturiin.<br>Illalla omaan rauhaan.</p></div>
         </div>
         <div class="sleep-grid">
           <article class="sleep-card reveal"><span class="room-number">01</span><h3 data-i18n="room1Title">Makuuhuone 1</h3><p data-i18n="room1Text">Parivuode kahdelle.</p></article>
@@ -114,15 +114,10 @@
       </div>
     </section>
 
-    <section class="wide-image" aria-label="Järvimaisema" data-i18n-aria="lakeSection">
-      <img src="images/lake-view.jpg" alt="Rauhallinen lampi, laituri ja soutuvene" data-i18n-alt="lakeAlt" loading="lazy">
-      <div class="wide-overlay"><div class="container"><p class="section-kicker light" data-i18n="lakeKicker">LAMMEN RANNALLA</p><h2 data-i18n="lakeTitle">Aamulla tunturiin.<br>Illalla omaan rauhaan.</h2></div></div>
-    </section>
-
     <section class="section amenities-section" id="varustelu">
       <div class="container">
         <div class="section-heading reveal">
-          <div><p class="section-kicker" data-i18n="amenitiesKicker">VARUSTELU</p><h2 data-i18n="amenitiesTitle">Kaikki hyvään Rukan lomaan</h2></div>
+          <div><p class="section-kicker" data-i18n="amenitiesKicker">VARUSTELU</p><h2 data-i18n="amenitiesTitle">Kaikki hyvään Rukan lomaan</h2><p class="integrated-subtitle" data-i18n="galleryTitle">Pohjoisen parhaat puolet</p></div>
           <p data-i18n="amenitiesIntro">Mökki on suunniteltu ympärivuotiseen lomaan – ruoanlaitosta ja palautumisesta ulkoiluun.</p>
         </div>
         <div class="amenity-grid">
@@ -142,13 +137,29 @@
       </div>
     </section>
 
-    <section class="section gallery-section" aria-labelledby="gallery-title">
+    <section class="section carousel-section" aria-labelledby="gallery-title">
       <div class="container">
-        <div class="section-heading reveal"><div><p class="section-kicker" data-i18n="galleryKicker">YMPÄRI VUODEN</p><h2 id="gallery-title" data-i18n="galleryTitle">Pohjoisen parhaat puolet</h2></div><p data-i18n="galleryIntro">Hiihtoa ja lumisia metsiä talvella; järvipäiviä, pyöräilyä ja valoisia iltoja kesällä.</p></div>
-        <div class="gallery">
-          <button class="gallery-item gallery-main" type="button" data-full="images/bedroom.jpg"><img src="images/bedroom.jpg" alt="Rauhallinen hirsimökin makuuhuone" data-i18n-alt="bedroomAlt" loading="lazy"><span data-i18n="galleryOpen">Avaa kuva</span></button>
-          <button class="gallery-item" type="button" data-full="images/sauna.jpg"><img src="images/sauna.jpg" alt="Perinteinen suomalainen sauna" data-i18n-alt="saunaAlt" loading="lazy"><span data-i18n="galleryOpen">Avaa kuva</span></button>
-          <button class="gallery-item" type="button" data-full="images/winter-trail.jpg"><img src="images/winter-trail.jpg" alt="Lumiset hiihtoladut Rukan maisemissa" data-i18n-alt="trailAlt" loading="lazy"><span data-i18n="galleryOpen">Avaa kuva</span></button>
+        <div class="carousel-heading reveal">
+          <p class="section-kicker" data-i18n="galleryKicker">YMPÄRI VUODEN</p>
+          <h2 id="gallery-title" data-i18n="galleryHeading">Kuvia Lammensylistä ja Rukalta</h2>
+          <p data-i18n="galleryIntro">Hiihtoa ja lumisia metsiä talvella; järvipäiviä, pyöräilyä ja valoisia iltoja kesällä.</p>
+        </div>
+        <div class="carousel reveal" aria-roledescription="carousel" aria-label="Lammensyli-kuvagalleria" data-i18n-aria="carouselLabel">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <figure class="carousel-slide is-active"><img src="images/living-room.jpg" alt="Hirsimökin lämmin olohuone ja kivitakka" data-i18n-alt="livingAlt" loading="lazy"></figure>
+              <figure class="carousel-slide"><img src="images/lake-view.jpg" alt="Rauhallinen lampi, laituri ja soutuvene" data-i18n-alt="lakeAlt" loading="lazy"></figure>
+              <figure class="carousel-slide"><img src="images/bedroom.jpg" alt="Rauhallinen hirsimökin makuuhuone" data-i18n-alt="bedroomAlt" loading="lazy"></figure>
+              <figure class="carousel-slide"><img src="images/sauna.jpg" alt="Perinteinen suomalainen sauna" data-i18n-alt="saunaAlt" loading="lazy"></figure>
+              <figure class="carousel-slide"><img src="images/winter-trail.jpg" alt="Lumiset hiihtoladut Rukan maisemissa" data-i18n-alt="trailAlt" loading="lazy"></figure>
+            </div>
+          </div>
+          <button class="carousel-control carousel-prev" type="button" aria-label="Edellinen kuva" data-i18n-aria="carouselPrev">←</button>
+          <button class="carousel-control carousel-next" type="button" aria-label="Seuraava kuva" data-i18n-aria="carouselNext">→</button>
+          <div class="carousel-footer">
+            <div class="carousel-dots" aria-label="Valitse kuva" data-i18n-aria="carouselDots"></div>
+            <span class="carousel-status" aria-live="polite">01 / 05</span>
+          </div>
         </div>
       </div>
     </section>
@@ -220,9 +231,5 @@
     <div class="container footer-bottom"><span>© <span id="year">2026</span> Lammensyli</span><span data-i18n="footerData">Kohdetiedot: Booking.com ja Airbnb · tarkistettu 11/2026</span></div>
   </footer>
 
-  <dialog class="lightbox" id="lightbox">
-    <button type="button" class="lightbox-close" aria-label="Sulje kuva" data-i18n-aria="closeImage">×</button>
-    <img src="" alt="">
-  </dialog>
 </body>
 </html>

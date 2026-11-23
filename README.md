@@ -13,8 +13,10 @@ A responsive, multilingual static website for the Lammensyli holiday cabin in Ru
 - OpenStreetMap location map with a Lammensyli pin
 - Clickable email and telephone contact details in the reservation section
 - Midnight Aurora visual theme with a supplied Lammensyli aurora hero image
+- Compact 500 px hero and animated aurora call-to-action button hovers
+- Keyboard-accessible five-image carousel using every JPEG in the `images/` folder
 - Guest review highlights and key property details
-- Image lightbox, favicon and SEO description
+- Favicon and SEO description
 - No framework, build step, external font or analytics dependency
 
 ## Files
