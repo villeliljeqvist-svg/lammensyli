@@ -14,7 +14,7 @@ A responsive, multilingual static website for the Lammensyli holiday cabin in Ru
 - Clickable email and telephone contact details in the reservation section
 - Midnight Aurora visual theme with a supplied Lammensyli aurora hero image
 - Compact 500 px hero and animated aurora call-to-action button hovers
-- Keyboard-accessible five-image carousel using every JPEG in the `images/` folder
+- Keyboard-accessible dynamic carousel that discovers every supported image in `images/`
 - Guest review highlights and key property details
 - Favicon and SEO description
 - No framework, build step, external font or analytics dependency
@@ -26,11 +26,19 @@ lammensyli-site/
 ├── index.html
 ├── styles.css
 ├── translations.js
+├── gallery-config.js
 ├── script.js
 ├── favicon.svg
 ├── README.md
 ├── SOURCE-NOTES.md
+├── assets/
+│   └── living-room.jpg
+├── scripts/
+│   └── generate-image-manifest.py
+├── .github/workflows/
+│   └── update-image-manifest.yml
 └── images/
+    ├── images.json
     ├── living-room.jpg
     ├── lake-view.jpg
     ├── bedroom.jpg
@@ -56,13 +64,40 @@ Then open `http://localhost:8000`.
 4. In **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`.
 5. Save. GitHub will display the public URL after deployment.
 
-## Images
+## Dynamic carousel images
 
-The hero uses the supplied Booking.com image `335563954.jpg` from its original CDN URL. The five JPEG files in `images/` are AI-generated sample visuals.
+The carousel has **no image filenames hard-coded in `index.html` or `script.js`**. It discovers files from `images/` in either of these ways:
+
+1. On a normal `username.github.io/repository` GitHub Pages URL, it reads the public repository folder through the GitHub Contents API. Adding or removing an image updates the carousel automatically after the repository change is live.
+2. On other hosting or during local preview, it reads `images/images.json`. A bundled GitHub workflow regenerates and commits this fallback manifest whenever `images/` changes.
+
+Supported formats are `.avif`, `.gif`, `.jpg`, `.jpeg`, `.png` and `.webp`. Files are displayed in natural filename order, so names such as `01-exterior.jpg`, `02-living-room.jpg` are useful when you want to control the sequence.
+
+### Add or remove carousel images
+
+- Add or delete image files in `images/` and commit/push the change.
+- Do not edit `index.html` or `script.js`.
+- For a custom domain, set the public repository once in `gallery-config.js`, for example:
+
+```js
+repository: "your-github-name/lammensyli"
+```
+
+- For local/offline hosting, regenerate the fallback manifest after changing images:
+
+```bash
+python scripts/generate-image-manifest.py
+```
+
+When using GitHub Actions, ensure the repository permits workflows to write contents under **Settings → Actions → General → Workflow permissions**. The included workflow only updates `images/images.json`.
+
+## Image sources
+
+The hero uses the supplied Booking.com image `335563954.jpg` from its original CDN URL. The initial JPEG files in `images/` are AI-generated sample visuals. The fixed introduction image lives separately in `assets/`, so the contents of `images/` can be managed freely for the carousel.
 
 ## Important: replace the sample images
 
-The five JPEG files in `images/` are **AI-generated sample visuals**, not photographs of the actual Lammensyli property. Replace those five gallery/content images with your own authorized property photographs before publishing. Keep the same filenames to avoid changing the HTML, or update each image path and translated alt text.
+The initial JPEG files in `images/` are **AI-generated sample visuals**, not photographs of the actual Lammensyli property. Replace them with your own authorized property photographs before publishing. You may use any filenames; regenerate the manifest when not using automatic GitHub discovery.
 
 Recommended source image size: at least 1600 px wide, landscape orientation, optimized JPEG/WebP under about 500 KB each.
 
