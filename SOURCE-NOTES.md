@@ -45,3 +45,7 @@ Airbnb described bed linen and towels at €15/person and optional final cleanin
 ## Image disclaimer
 
 The packaged JPEGs are generated placeholders. They are not taken from Airbnb or Booking.com and must not be presented as actual property photography. Replace them before public launch.
+
+## Hero image
+
+The Midnight Aurora hero uses the user-supplied Booking.com image `335563954.jpg` (576 × 768) from its original CDN URL.
