@@ -23,7 +23,7 @@ Research date: 23 November 2026.
 - Ski-bus stop and cross-country route nearby
 - Outdoor gear described as available to borrow, subject to availability
 - Kuusamo Airport approx. 27 km; Riisitunturi National Park approx. 39 km
-- Address: Ukkoherrantie 30 A, 93830 Ruka, Finland
+- The location map uses verified coordinates for the property; the street address is intentionally not displayed in the site files.
 
 ## Review data used
 

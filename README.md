@@ -10,6 +10,8 @@ A responsive, multilingual static website for the Lammensyli holiday cabin in Ru
 - Responsive navigation and layouts for desktop, tablet and mobile
 - Accessible menu, keyboard-friendly native language selector, translated alt/ARIA labels and reduced-motion support
 - Booking.com and Airbnb booking links
+- OpenStreetMap location map with a Lammensyli pin
+- Clickable email and telephone contact details in the reservation section
 - Guest review highlights and key property details
 - Image lightbox, favicon and SEO description
 - No framework, build step, external font or analytics dependency
