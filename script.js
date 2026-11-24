@@ -145,12 +145,45 @@
     revealItems.forEach((item) => item.classList.add("visible"));
   }
 
+  // ---- Responsive gallery carousel -------------------------------------------------
+  // Each "page" of the carousel shows as many whole images as fit the available width.
+  // Portrait/square images are grouped side by side; a landscape image gets a page of its own.
+  // Images are never cropped and the group is centred, leaving the sides empty.
+  let galleryImages = []; // { path, ratio, index }
+  let resizeTimer = null;
+  let lastLayoutWidth = 0;
+  const LANDSCAPE_RATIO = 1.15; // width / height above which an image is treated as landscape
+  const GAP = 14;
+
+  function galleryRowHeight() {
+    const isMobile = window.matchMedia("(max-width: 620px)").matches;
+    const max = isMobile ? 460 : 520;
+    // Never taller than ~72% of the screen so the carousel fits the window.
+    return Math.round(Math.max(260, Math.min(max, window.innerHeight * 0.72)));
+  }
+
+  function groupImages(images, availableWidth, rowHeight) {
+    const pages = [];
+    let current = [];
+    let currentWidth = 0;
+    const flush = () => { if (current.length) pages.push(current); current = []; currentWidth = 0; };
+    images.forEach((item) => {
+      if (item.ratio > LANDSCAPE_RATIO) { flush(); pages.push([item]); return; }
+      const width = rowHeight * item.ratio;
+      const needed = current.length ? currentWidth + GAP + width : width;
+      if (current.length && needed > availableWidth) flush();
+      currentWidth = current.length ? currentWidth + GAP + width : width;
+      current.push(item);
+    });
+    flush();
+    return pages;
+  }
+
   function updateCarouselAccessibility() {
     if (!slides.length) return;
     const dictionary = currentDictionary();
-    slides.forEach((slide, index) => {
-      const image = slide.querySelector("img");
-      if (image) image.alt = `${dictionary.carouselImageAlt || "Gallery image"} ${index + 1}`;
+    carouselTrack?.querySelectorAll("img[data-gallery-index]").forEach((image) => {
+      image.alt = `${dictionary.carouselImageAlt || "Gallery image"} ${Number(image.dataset.galleryIndex) + 1}`;
     });
     dotsContainer?.querySelectorAll(".carousel-dot").forEach((dot, index) => {
       dot.setAttribute("aria-label", `${dictionary.carouselDotLabel || "Show image"} ${index + 1}`);
@@ -161,7 +194,10 @@
     if (!carouselTrack || !slides.length) return;
     carouselIndex = (nextIndex + slides.length) % slides.length;
     carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
-    slides.forEach((slide, index) => slide.classList.toggle("is-active", index === carouselIndex));
+    slides.forEach((slide, index) => {
+      slide.classList.toggle("is-active", index === carouselIndex);
+      slide.setAttribute("aria-hidden", index === carouselIndex ? "false" : "true");
+    });
     dotsContainer?.querySelectorAll(".carousel-dot").forEach((dot, index) => {
       dot.classList.toggle("is-active", index === carouselIndex);
       dot.setAttribute("aria-current", index === carouselIndex ? "true" : "false");
@@ -169,35 +205,90 @@
     if (carouselStatus) carouselStatus.textContent = `${String(carouselIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
   }
 
-  function buildCarousel(imagePaths) {
-    if (!carousel || !carouselTrack || !dotsContainer) return;
+  function layoutCarousel() {
+    if (!carousel || !carouselTrack || !dotsContainer || !galleryImages.length) return;
+    const viewport = carousel.querySelector(".carousel-viewport");
+    const availableWidth = viewport.clientWidth;
+    if (!availableWidth) return;
+    lastLayoutWidth = availableWidth;
+    const rowHeight = galleryRowHeight();
+    carousel.style.setProperty("--gallery-row-height", `${rowHeight}px`);
+    carousel.style.setProperty("--gallery-gap", `${GAP}px`);
+
+    // Keep the first image currently on screen visible after a re-layout.
+    const firstVisible = slides[carouselIndex]?.querySelector("img")?.dataset.galleryIndex;
+    const pages = groupImages(galleryImages, availableWidth, rowHeight);
+
     carouselTrack.replaceChildren();
     dotsContainer.replaceChildren();
-
-    imagePaths.forEach((path, index) => {
+    let targetPage = 0;
+    pages.forEach((page, pageIndex) => {
       const slide = document.createElement("figure");
-      slide.className = `carousel-slide${index === 0 ? " is-active" : ""}`;
-      const image = document.createElement("img");
-      image.src = path;
-      image.loading = index === 0 ? "eager" : "lazy";
-      image.decoding = "async";
-      slide.appendChild(image);
+      slide.className = "carousel-slide";
+      slide.classList.add(page.length > 1 ? "is-group" : "is-single");
+      page.forEach((item) => {
+        const image = document.createElement("img");
+        image.src = item.path;
+        image.dataset.galleryIndex = String(item.index);
+        image.decoding = "async";
+        image.loading = pageIndex < 2 ? "eager" : "lazy";
+        image.style.aspectRatio = String(item.ratio);
+        if (String(item.index) === firstVisible) targetPage = pageIndex;
+        slide.appendChild(image);
+      });
       carouselTrack.appendChild(slide);
 
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = "carousel-dot";
-      dot.addEventListener("click", () => showSlide(index));
+      dot.addEventListener("click", () => showSlide(pageIndex));
       dotsContainer.appendChild(dot);
     });
 
     slides = [...carouselTrack.querySelectorAll(".carousel-slide")];
-    carousel.classList.toggle("is-empty", !slides.length);
-    carousel.classList.toggle("is-ready", Boolean(slides.length));
-    if (!slides.length && carouselMessage) carouselMessage.textContent = currentDictionary().carouselEmpty || "No gallery images found.";
     updateCarouselAccessibility();
-    showSlide(0);
+    carouselTrack.style.transition = "none";
+    showSlide(targetPage);
+    void carouselTrack.offsetWidth;
+    carouselTrack.style.transition = "";
   }
+
+  function measureImage(path) {
+    return new Promise((resolve) => {
+      const probe = new Image();
+      probe.onload = () => resolve(probe.naturalWidth && probe.naturalHeight ? probe.naturalWidth / probe.naturalHeight : 1.5);
+      probe.onerror = () => resolve(null);
+      probe.src = path;
+    });
+  }
+
+  async function buildCarousel(imagePaths) {
+    if (!carousel || !carouselTrack || !dotsContainer) return;
+    const ratios = await Promise.all(imagePaths.map(measureImage));
+    galleryImages = imagePaths
+      .map((path, i) => ({ path, ratio: ratios[i] }))
+      .filter((item) => item.ratio)
+      .map((item, index) => ({ ...item, index }));
+
+    carousel.classList.toggle("is-empty", !galleryImages.length);
+    carousel.classList.toggle("is-ready", Boolean(galleryImages.length));
+    if (!galleryImages.length) {
+      if (carouselMessage) carouselMessage.textContent = currentDictionary().carouselEmpty || "No gallery images found.";
+      return;
+    }
+    carouselIndex = 0;
+    slides = [];
+    layoutCarousel();
+  }
+
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const viewport = carousel?.querySelector(".carousel-viewport");
+      if (viewport && Math.abs(viewport.clientWidth - lastLayoutWidth) > 2) layoutCarousel();
+      else if (viewport) carousel.style.setProperty("--gallery-row-height", `${galleryRowHeight()}px`);
+    }, 150);
+  });
 
   function inferGitHubRepository() {
     const configured = window.LAMMENSYLI_GALLERY?.repository?.trim();

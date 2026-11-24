@@ -71,7 +71,7 @@ The carousel has **no image filenames hard-coded in `index.html` or `script.js`*
 1. On a normal `username.github.io/repository` GitHub Pages URL, it reads the public repository folder through the GitHub Contents API. Adding or removing an image updates the carousel automatically after the repository change is live.
 2. On other hosting or during local preview, it reads `images/images.json`. A bundled GitHub workflow regenerates and commits this fallback manifest whenever `images/` changes.
 
-Supported formats are `.avif`, `.gif`, `.jpg`, `.jpeg`, `.png` and `.webp`. Files are displayed in natural filename order, so names such as `01-exterior.jpg`, `02-living-room.jpg` are useful when you want to control the sequence.
+Supported formats are `.avif`, `.gif`, `.jpg`, `.jpeg`, `.png` and `.webp`. Images are shown whole, never cropped. Portrait and square images are placed side by side, as many as fit the page width, and each landscape image gets its own slide; each group is centred and the layout recalculates when the window is resized. Files are displayed in natural filename order, so names such as `01-exterior.jpg`, `02-living-room.jpg` are useful when you want to control the sequence.
 
 ### Add or remove carousel images
 
