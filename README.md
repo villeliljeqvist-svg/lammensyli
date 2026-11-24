@@ -93,7 +93,7 @@ When using GitHub Actions, ensure the repository permits workflows to write cont
 
 ## Image sources
 
-The hero uses the supplied Booking.com image `335563954.jpg` from its original CDN URL. The initial JPEG files in `images/` are AI-generated sample visuals. The fixed introduction image lives separately in `assets/`, so the contents of `images/` can be managed freely for the carousel.
+The hero uses the supplied Booking.com image `335563954.jpg` from its original CDN URL. The left side of the hero shows `assets/hero-aurora-left.jpg`, a frosted-spruce aurora background (AI-generated) that blends into the photo's left edge; replace that file to change it. The initial JPEG files in `images/` are AI-generated sample visuals. The fixed introduction image lives separately in `assets/`, so the contents of `images/` can be managed freely for the carousel.
 
 ## Important: replace the sample images
 
